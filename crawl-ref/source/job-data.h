@@ -213,8 +213,8 @@ static const map<job_type, job_def> job_data =
     { { SK_FIGHTING, 2 }, { SK_ARMOUR, 1 }, { SK_DODGING, 2 },
       { SK_SPELLCASTING, 2 }, { SK_CHARMS, 3 }, { SK_WEAPON, 2 }, },
 } },
- 
- { JOB_SLIME_KNIGHT, {
+
+{ JOB_SLIME_KNIGHT, {
     "Sl", "Slime Knight",
     4, 4, 4,
     { SP_HILL_ORC, SP_TROLL, SP_CENTAUR, SP_MERFOLK, SP_MINOTAUR,
@@ -225,7 +225,7 @@ static const map<job_type, job_def> job_data =
       { SK_WEAPON, 3 } },
 } },   
     
- { JOB_SUMMONER, {
+{ JOB_SUMMONER, {
     "Su", "Summoner",
     0, 7, 5,
     { SP_DEEP_ELF, SP_HILL_ORC, SP_VINE_STALKER, SP_MERFOLK, SP_TENGU,
@@ -252,7 +252,7 @@ static const map<job_type, job_def> job_data =
     0, 7, 5,
     { SP_DEEP_ELF, SP_SPRIGGAN, SP_NAGA, SP_MERFOLK, SP_TENGU, SP_FELID,
       SP_DEMONSPAWN, },
-    { "robe", "Young Poisoner's Handbook" },
+    { "robe", "Young Poisoner's Handbook", "blowgun", "needle ego:poisoned q:2" },
     WCHOICE_NONE,
     { { SK_CONJURATIONS, 1 }, { SK_POISON_MAGIC, 3 }, { SK_SPELLCASTING, 2 },
       { SK_DODGING, 2 }, { SK_STEALTH, 2 }, },
