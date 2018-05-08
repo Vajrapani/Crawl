@@ -33,9 +33,9 @@ Draconian
 Draconians are versatile hybrids. They mature when reaching level 7 and develop
 a colour.
 %%%%
-Faerie Dragon
+Fairy
 
-Faerie Dragons are naturally attuned to magic and have shimmering scales that
+Fairies have become attuned to magic over time and have shimmering scales that
 repel attacks. They have bright wings and can fly, but are frail.
 %%%%
 Formicid

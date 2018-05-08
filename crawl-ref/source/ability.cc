@@ -1147,7 +1147,7 @@ void no_ability_msg()
     }
     else if (you.get_mutation_level(MUT_TENGU_FLIGHT)
              || you.get_mutation_level(MUT_BIG_WINGS)
-             || you.get_mutation_level(MUT_FAERIE_DRAGON_FLIGHT))
+             || you.get_mutation_level(MUT_FAIRY_FLIGHT))
     {
         if (you.airborne())
             mpr("You're already flying!");

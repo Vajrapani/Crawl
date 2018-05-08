@@ -240,7 +240,7 @@ end
 local function mp_is_low()
   local mp, mmp = you.mp()
   local fd = 0
-  if you.race() == ("Faerie Dragon") then
+  if you.race() == ("Fairy") then
     fd = 1
   end
   return (100*mp + 100*fd <= AUTOMAGIC_STOP*mmp)

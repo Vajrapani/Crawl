@@ -934,7 +934,7 @@ static void _describe_airborne(status_info* inf)
     {
         desc = " quickly and evasively";
     }
-    else if (you.faerie_dragon_flight())
+    else if (you.fairy_flight())
     {
         desc = " evasively";
     }

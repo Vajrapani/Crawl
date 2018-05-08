@@ -488,7 +488,7 @@ tileidx_t tileidx_player()
         case SP_PURPLE_DRACONIAN:  ch = TILEP_TRAN_DRAGON_PURPLE;  break;
         case SP_WHITE_DRACONIAN:   ch = TILEP_TRAN_DRAGON_WHITE;   break;
         case SP_RED_DRACONIAN:     ch = TILEP_TRAN_DRAGON_RED;     break;
-        case SP_FAERIE_DRAGON:     ch = TILEP_TRAN_DRAGON_FAERIE;  break;
+        case SP_FAIRY:             ch = TILEP_TRAN_DRAGON_FAERIE;  break;
         default:                   ch = TILEP_TRAN_DRAGON;         break;
         }
         break;
@@ -629,7 +629,7 @@ tileidx_t tilep_species_to_base_tile(int sp, int level)
         return TILEP_BASE_VINE_STALKER;
     case SP_BARACHI:
         return TILEP_BASE_BARACHI;
-    case SP_FAERIE_DRAGON:
+    case SP_FAIRY:
         return TILEP_BASE_FAERIE_DRAGON;
     default:
         return TILEP_BASE_HUMAN;
@@ -731,7 +731,7 @@ void tilep_race_default(int sp, int level, dolls_data *doll)
         case SP_FORMICID:
             hair = 0;
             break;
-        case SP_FAERIE_DRAGON:
+        case SP_FAIRY:
             hair = 0;
             break;
         default:

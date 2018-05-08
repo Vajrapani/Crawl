@@ -2135,7 +2135,7 @@ static int _player_evasion_bonuses()
     return evbonus;
 }
 
-// Player EV scaling for being flying tengu, flying faerie dragon, or swimming merfolk.
+// Player EV scaling for being flying tengu, flying fairy, or swimming merfolk.
 static int _player_scale_evasion(int prescaled_ev, const int scale)
 {
     if (you.duration[DUR_PETRIFYING] || you.caught())
@@ -2157,8 +2157,8 @@ static int _player_scale_evasion(int prescaled_ev, const int scale)
         return prescaled_ev + ev_bonus;
     }
 
-    // Flying Faerie Dragons get a 10% evasion bonus.
-    if (you.faerie_dragon_flight())
+    // Flying Fairy get a 10% evasion bonus.
+    if (you.fairy_flight())
     {
         const int ev_bonus = max(1 * scale, prescaled_ev / 10);
         return prescaled_ev + ev_bonus;
@@ -3172,8 +3172,8 @@ int player_stealth()
             stealth += STEALTH_PIP;
     }
 
-    //Faerie Dragons' bright wings reduce stealth.
-    if (you.species == SP_FAERIE_DRAGON
+    //Fairies' bright wings reduce stealth.
+    if (you.species == SP_FAIRY
         && (you.form == transformation::none
             || you.form == transformation::appendage
             || you.form == transformation::blade_hands
@@ -4888,21 +4888,21 @@ void float_player()
     else if (you.tengu_flight())
         mpr("You swoop lightly up into the air.");
 
-    else if (you.faerie_dragon_flight())
+    else if (you.fairy_flight())
         mpr("You flutter up into the air.");
 
     else
         mpr("You fly up into the air.");
 
-    if (you.species == SP_TENGU || you.species == SP_FAERIE_DRAGON)
+    if (you.species == SP_TENGU || you.species == SP_FAIRY)
 
         you.redraw_evasion = true;
 }
 
-// Faerie Dragons start the game flying.
+// Fairies start the game flying.
 void float_once()
 {
-    if (you.species != SP_FAERIE_DRAGON)
+    if (you.species != SP_FAIRY)
     {
         return;
     }
@@ -4958,7 +4958,7 @@ bool land_player(bool quiet)
 
     if (!quiet)
         mpr("You float gracefully downwards.");
-    if (you.species == SP_TENGU || you.species == SP_FAERIE_DRAGON)
+    if (you.species == SP_TENGU || you.species == SP_FAIRY)
         you.redraw_evasion = true;
 
     you.attribute[ATTR_FLIGHT_UNCANCELLABLE] = 0;
@@ -6472,18 +6472,18 @@ bool player::racial_permanent_flight() const
 {
     return get_mutation_level(MUT_TENGU_FLIGHT) >= 2
         || get_mutation_level(MUT_BIG_WINGS)
-        || get_mutation_level(MUT_FAERIE_DRAGON_FLIGHT);
+        || get_mutation_level(MUT_fairy_flight);
 }
 
- // Only Tengu and Faerie Dragons get perks for flying.
+ // Only Tengu and Fairies get perks for flying.
 bool player::tengu_flight() const
 {
     return species == SP_TENGU && airborne();
 }
 
-bool player::faerie_dragon_flight() const
+bool player::fairy_flight() const
 {
-    return species == SP_FAERIE_DRAGON && airborne();
+    return species == SP_FAIRY && airborne();
 }
 
 /**
