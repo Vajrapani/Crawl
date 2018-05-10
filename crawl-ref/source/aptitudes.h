@@ -1266,22 +1266,22 @@ static const species_skill_aptitude species_skill_aptitudes[] =
     APT(SP_FAIRY,           SK_CROSSBOWS,      -2),
     APT(SP_FAIRY,           SK_THROWING,       -1),
     APT(SP_FAIRY,           SK_ARMOUR,        UNUSABLE_SKILL),
-    APT(SP_FAIRY,           SK_DODGING,         1),
-    APT(SP_FAIRY,           SK_STEALTH,        -3),
+    APT(SP_FAIRY,           SK_DODGING,         3),
+    APT(SP_FAIRY,           SK_STEALTH,        -2),
 #if TAG_MAJOR_VERSION == 34
     APT(SP_FAIRY,           SK_STABBING,      UNUSABLE_SKILL),
 #endif
-    APT(SP_FAIRY,   SK_SHIELDS,        -3),
+    APT(SP_FAIRY,           SK_SHIELDS,        -3),
 #if TAG_MAJOR_VERSION == 34
-    APT(SP_FAIRY,   SK_TRAPS,         UNUSABLE_SKILL),
+    APT(SP_FAIRY,           SK_TRAPS,         UNUSABLE_SKILL),
 #endif
     APT(SP_FAIRY,           SK_UNARMED_COMBAT,  0),
-    APT(SP_FAIRY,           SK_SPELLCASTING,    1),
+    APT(SP_FAIRY,           SK_SPELLCASTING,    2),
     APT(SP_FAIRY,           SK_CONJURATIONS,    2),
-    APT(SP_FAIRY,           SK_HEXES,           0),
+    APT(SP_FAIRY,           SK_HEXES,          -1),
     APT(SP_FAIRY,           SK_CHARMS,          0),
-    APT(SP_FAIRY,           SK_SUMMONINGS,      0),
-    APT(SP_FAIRY,           SK_NECROMANCY,      2),
+    APT(SP_FAIRY,           SK_SUMMONINGS,      1),
+    APT(SP_FAIRY,           SK_NECROMANCY,      1),
     APT(SP_FAIRY,           SK_TRANSLOCATIONS,  0),
     APT(SP_FAIRY,           SK_TRANSMUTATIONS,  0),
     APT(SP_FAIRY,           SK_FIRE_MAGIC,      2),
@@ -1290,7 +1290,7 @@ static const species_skill_aptitude species_skill_aptitudes[] =
     APT(SP_FAIRY,           SK_EARTH_MAGIC,     2),
     APT(SP_FAIRY,           SK_POISON_MAGIC,    2),
     APT(SP_FAIRY,           SK_INVOCATIONS,     0),
-    APT(SP_FAIRY,           SK_EVOCATIONS,     -1),
+    APT(SP_FAIRY,           SK_EVOCATIONS,      1),
 
     // SP_FELID
     APT(SP_FELID,           SK_FIGHTING,        0),
