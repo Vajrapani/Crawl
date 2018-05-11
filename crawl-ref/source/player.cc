@@ -6472,7 +6472,7 @@ bool player::racial_permanent_flight() const
 {
     return get_mutation_level(MUT_TENGU_FLIGHT) >= 2
         || get_mutation_level(MUT_BIG_WINGS)
-        || get_mutation_level(MUT_fairy_flight);
+        || get_mutation_level(MUT_FAIRY_FLIGHT);
 }
 
  // Only Tengu and Fairies get perks for flying.

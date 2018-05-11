@@ -515,7 +515,7 @@ public:
 
     bool tengu_flight() const;
 
-    bool faerie_dragon_flight() const;
+    bool fairy_flight() const;
 
     int heads() const override;
 
