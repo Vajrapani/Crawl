@@ -2322,11 +2322,14 @@ int player_shield_class()
                ? you.get_mutation_level(MUT_LARGE_BONE_PLATES) * 400 + 400
                : 0);
 
-    shield += you.get_mutation_level(MUT_SHIMMERING_SCALES) * 1200;
     shield += qazlal_sh_boost() * 100;
     shield += tso_sh_boost() * 100;
     shield += you.wearing(EQ_AMULET_PLUS, AMU_REFLECTION) * 200;
     shield += you.scan_artefacts(ARTP_SHIELDING) * 200;
+
+    // Fairies get bonus SH from shimmering scales
+    if (you.species == SP_FAIRY)
+        shield += 600 + 200 * you.experience_level / 3;
 
     return (shield + 50) / 100;
 }
@@ -2861,9 +2864,17 @@ void level_change(bool skip_attribute_increase)
                 }
                 break;
 
+            case SP_FAIRY:
+                if (!(you.experience_level % 3))
+                {
+                    mprf(MSGCH_INTRINSIC_GAIN, "Your scales feel stronger.");
+                }
+                break;
+
             case SP_BASE_DRACONIAN:
                 if (you.experience_level >= 7)
                 {
+
 #if TAG_MAJOR_VERSION == 34
                     // Hack to evade mottled draconians.
                     do
@@ -5648,9 +5659,9 @@ int player::shield_block_penalty() const
 bool player::shielded() const
 {
     return shield()
+           || you.species == SP_FAIRY
            || duration[DUR_DIVINE_SHIELD]
            || get_mutation_level(MUT_LARGE_BONE_PLATES) > 0
-           || get_mutation_level(MUT_SHIMMERING_SCALES) > 0
            || qazlal_sh_boost() > 0
            || attribute[ATTR_BONE_ARMOUR] > 0
            || you.wearing(EQ_AMULET_PLUS, AMU_REFLECTION) > 0
@@ -5916,6 +5927,8 @@ int player::racial_ac(bool temp) const
             return 200 + 100 * experience_level * 2 / 5     // max 20
                        + 100 * max(0, experience_level - 7) * 2 / 5;
         }
+        else if (species == SP_FAIRY)
+	        return 300 + 100 * experience_level / 3;
     }
 
     return 0;
@@ -5974,8 +5987,6 @@ int player::base_ac(int scale) const
               // +1, +2, +3
     AC += get_mutation_level(MUT_IRIDESCENT_SCALES, mutation_activity_type::FULL) * 200;
               // +2, +4, +6
-    AC += get_mutation_level(MUT_SHIMMERING_SCALES, mutation_activity_type::FULL) * 600;
-              // +6
 #if TAG_MAJOR_VERSION == 34
     AC += get_mutation_level(MUT_ROUGH_BLACK_SCALES, mutation_activity_type::FULL)
           ? -100 + get_mutation_level(MUT_ROUGH_BLACK_SCALES, mutation_activity_type::FULL) * 300 : 0;

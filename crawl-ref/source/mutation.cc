@@ -274,7 +274,7 @@ static const mutation_type _all_scales[] =
     MUT_RUGGED_BROWN_SCALES,        MUT_SLIMY_GREEN_SCALES,
     MUT_THIN_METALLIC_SCALES,       MUT_THIN_SKELETAL_STRUCTURE,
     MUT_YELLOW_SCALES,              MUT_STURDY_FRAME,
-    MUT_SANGUINE_ARMOUR,            MUT_SHIMMERING_SCALES,
+    MUT_SANGUINE_ARMOUR,
 };
 
 static bool _is_covering(mutation_type mut)
@@ -350,7 +350,6 @@ mutation_activity_type mutation_activity_level(mutation_type mut)
         case MUT_ROUGH_BLACK_SCALES:
 #endif
         case MUT_RUGGED_BROWN_SCALES:
-        case MUT_SHIMMERING_SCALES:
             return mutation_activity_type::PARTIAL;
         case MUT_YELLOW_SCALES:
         case MUT_ICY_BLUE_SCALES:
@@ -628,8 +627,17 @@ string describe_mutations(bool center_title)
         else
             result += str + "\n";
     }
-
-    if (you.racial_ac(false) > 0)
+    if (you.species == SP_FAIRY)
+    {
+        // Fairies get innate AC and SH
+        result += _annotate_form_based(
+            make_stringf("Your shimmering scales are hard and can block "
+                         "incoming attacks. (AC +%d, SH +%d)",
+                         you.racial_ac(false)/100,
+                         3 + you.experience_level/3),
+            player_is_shapechanged());
+    }
+    else if (you.racial_ac(false) > 0)
     {
         const string scale_clause = string(scale_type(you.species))
               + " scales are "
