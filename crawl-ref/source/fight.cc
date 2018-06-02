@@ -702,7 +702,7 @@ void get_cleave_targets(const actor &attacker, const coord_def& def,
             || attacker.is_player()
                && (you.form == transformation::hydra && you.heads() > 1
                    || you.duration[DUR_CLEAVE])
-						|| weap && weap.sub_type == WPN_SCYTHE)
+						|| weap && weap->sub_type == WPN_SCYTHE)
     {
         const coord_def atk = attacker.pos();
         coord_def atk_vector = def - atk;
@@ -717,10 +717,14 @@ void get_cleave_targets(const actor &attacker, const coord_def& def,
                 targets.push_back(target);
         }
 		
-		if (weap && weap.sub_type == WPN_SCYTHE)
+		if (weap && weap->sub_type == WPN_SCYTHE)
 		{
-			coord_def atk_vector = 2 * (def - atk);
 			int radius = 2;
+			atk_vector = (def - atk)
+			for (int i = 0; i < radius-1; i++)
+			{
+				atk_vector += (def - atk);
+			}
 			
 			for (int i = 0; i < 15; ++i)
 			{
@@ -744,6 +748,7 @@ void get_cleave_targets(const actor &attacker, const coord_def& def,
         targets = new_targets;
     }
 }
+
 
 /**
  * Attack a provided list of cleave targets.
