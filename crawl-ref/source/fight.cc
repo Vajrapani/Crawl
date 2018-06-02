@@ -720,7 +720,7 @@ void get_cleave_targets(const actor &attacker, const coord_def& def,
 		if (weap && weap->sub_type == WPN_SCYTHE)
 		{
 			int radius = 2;
-			atk_vector = (def - atk)
+			atk_vector = (def - atk);
 			for (int i = 0; i < radius-1; i++)
 			{
 				atk_vector += (def - atk);
