@@ -720,10 +720,11 @@ void get_cleave_targets(const actor &attacker, const coord_def& def,
 		if (weap && weap.sub_type == WPN_SCYTHE)
 		{
 			coord_def atk_vector = 2 * (def - atk);
+			int radius = 2;
 			
 			for (int i = 0; i < 15; ++i)
 			{
-				atk_vector = rotate_adjacent(atk_vector, dir);
+				atk_vector = rotate_adjacent(atk_vector, dir, radius);
 				
 				actor *target = actor_at(atk + atk_vector);
 				if (target && !_dont_harm(attacker, *target))
