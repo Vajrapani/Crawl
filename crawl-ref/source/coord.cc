@@ -75,7 +75,7 @@ coord_def grid2player(const coord_def &gc)
 //rotates a coord_def that points to an adjacent square
 //clockwise (direction > 0), or counter-clockwise (direction < 0)
 //radius of rotation is set to 1 by default
-coord_def rotate_adjacent(coord_def vector, int direction, int radius = 1)
+coord_def rotate_adjacent(coord_def vector, int direction, int radius)
 {
     int xn, yn;
 
