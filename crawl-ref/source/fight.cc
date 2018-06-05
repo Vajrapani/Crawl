@@ -701,7 +701,8 @@ void get_cleave_targets(const actor &attacker, const coord_def& def,
     if (weap && item_attack_skill(*weap) == SK_AXES
             || attacker.is_player()
                && (you.form == transformation::hydra && you.heads() > 1
-                   || you.duration[DUR_CLEAVE]))
+                   || you.duration[DUR_CLEAVE])
+						|| weap && weap->sub_type == WPN_SCYTHE)
     {
         const coord_def atk = attacker.pos();
         coord_def atk_vector = def - atk;
@@ -715,8 +716,27 @@ void get_cleave_targets(const actor &attacker, const coord_def& def,
             if (target && !_dont_harm(attacker, *target))
                 targets.push_back(target);
         }
+		
+		if (weap && weap->sub_type == WPN_SCYTHE)
+		{
+			int radius = 2;
+			atk_vector = (def - atk);
+			for (int i = 0; i < radius-1; i++)
+			{
+				atk_vector += (def - atk);
+			}
+			
+			for (int i = 0; i < 15; ++i)
+			{
+				atk_vector = rotate_adjacent(atk_vector, dir, radius);
+				
+				actor *target = actor_at(atk + atk_vector);
+				if (target && !_dont_harm(attacker, *target))
+					targets.push_back(target);
+			}
+		}
     }
-
+	
     if (weap && is_unrandom_artefact(*weap, UNRAND_GYRE))
     {
         list<actor*> new_targets;
@@ -728,6 +748,7 @@ void get_cleave_targets(const actor &attacker, const coord_def& def,
         targets = new_targets;
     }
 }
+
 
 /**
  * Attack a provided list of cleave targets.
