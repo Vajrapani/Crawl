@@ -1090,7 +1090,7 @@ static string _describe_weapon(const item_def &item, bool verbose)
         case SK_POLEARMS:
             if (item->sub_type == WPN_SCYTHE)
             {
-              description += "\n\nIt can be evoked to extend its reach.\n 
+              description += "\n\nIt can be evoked to extend its reach.\n"
                            "It hits all enemies within two tiles of the wielder, "
                            "dealing less damage to those not targeted.";
             }
