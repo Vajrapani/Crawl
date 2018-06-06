@@ -1141,25 +1141,25 @@ string attack::defender_name(bool allow_reflexive)
 
 int attack::player_stat_modify_damage(int damage)
 {
-    int dammod = 39;
-
-    if (you.strength() > 10)
-        dammod += (random2(you.strength() - 9) * 2);
-    else if (you.strength() < 10)
-        dammod -= (random2(11 - you.strength()) * 3);
-
-    damage *= dammod;
-    damage /= 39;
-
+    int str = you.strength();
+    damage *= 1000 + (str-10)*25;
+    damage = div_rand_round(damage, 1000);
     return damage;
 }
 
-int attack::player_apply_weapon_skill(int damage)
+int attack::player_apply_weapon_skill(int damage, skill_type skill)
 {
     if (using_weapon())
     {
-        damage *= 2500 + (random2(you.skill(wpn_skill, 100) + 1));
-        damage /= 2500;
+        damage *= 5000 + (you.skill(skill, 100));
+        damage = div_rand_round(damage, 5000);
+    }
+    else if (skill == SK_THROWING)
+    {
+        int skill_bonus = you.skill_rdiv(skill);
+            // stones get half the bonus
+        skill_bonus = div_rand_round(skill_bonus * min(damage, 4), 4);
+        damage += skill_bonus;
     }
 
     return damage;
@@ -1172,11 +1172,6 @@ int attack::player_apply_fighting_skill(int damage, bool aux)
     damage *= base * 100 + (random2(you.skill(SK_FIGHTING, 100) + 1));
     damage /= base * 100;
 
-    return damage;
-}
-
-int attack::player_apply_misc_modifiers(int damage)
-{
     return damage;
 }
 
@@ -1308,13 +1303,11 @@ int attack::calc_damage()
         potential_damage = using_weapon() || wpn_skill == SK_THROWING
             ? weapon_damage() : calc_base_unarmed_damage();
 
+        potential_damage = player_apply_weapon_skill(potential_damage, wpn_skill);
         potential_damage = player_stat_modify_damage(potential_damage);
+        potential_damage = player_apply_fighting_skill(potential_damage, false);
 
         damage = random2(potential_damage+1);
-
-        damage = player_apply_weapon_skill(damage);
-        damage = player_apply_fighting_skill(damage, false);
-        damage = player_apply_misc_modifiers(damage);
         damage = player_apply_slaying_bonuses(damage, false);
         damage = player_stab(damage);
         // A failed stab may have awakened monsters, but that could have
