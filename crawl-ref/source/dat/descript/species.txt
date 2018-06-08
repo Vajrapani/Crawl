@@ -91,11 +91,6 @@ Kobold
 
 Kobolds are small, mischievous and a little fragile, but multi-talented.
 %%%%
-Sand Dwarf
-
-Sand Dwarves are hardy, skilled with axes and maces, and can use magic
-while wearing heavy armour. However, having short legs, they move slowly.
-%%%%
 Merfolk
 
 Half fish, half human, Merfolk are citizens of both water and land. They are
@@ -125,6 +120,11 @@ Ogre
 
 Large, strong, and extremely robust, Ogres are competent at all forms of melee.
 They are not merely brutes, as they are comfortable with spellcasting.
+%%%%
+Sand Dwarf
+
+Sand Dwarves are hardy, skilled with axes and maces, and can use magic
+while wearing heavy armour. However, having short legs, they move slowly.
 %%%%
 Spriggan
 
