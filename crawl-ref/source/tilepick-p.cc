@@ -635,7 +635,7 @@ tileidx_t tilep_species_to_base_tile(int sp, int level)
         return TILEP_BASE_FAERIE_DRAGON;
     case SP_DUSK_WALKER:
         return TILEP_BASE_DUSK_WALKER;
-    case SP_MOUNTAIN_DWARF:
+    case SP_SAND_DWARF:
         return TILEP_BASE_HALFLING;
     default:
         return TILEP_BASE_HUMAN;

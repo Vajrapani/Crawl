@@ -91,9 +91,9 @@ Kobold
 
 Kobolds are small, mischievous and a little fragile, but multi-talented.
 %%%%
-Mountain Dwarf
+Sand Dwarf
 
-Mountain Dwarves are hardy, skilled with axes and maces, and can use magic
+Sand Dwarves are hardy, skilled with axes and maces, and can use magic
 while wearing heavy armour. However, having short legs, they move slowly.
 %%%%
 Merfolk

@@ -662,9 +662,9 @@ static const map<species_type, species_def> species_data =
     { SK_STAVES, SK_AXES, SK_SLINGS, SK_CROSSBOWS},
 } },
 
-{ SP_MOUNTAIN_DWARF, {
-    "MD",
-    "Mountain Dwarf", "Dwarven", nullptr,
+{ SP_SAND_DWARF, {
+    "SD",
+    "Sand Dwarf", "Dwarven", nullptr,
     SPF_NONE,
     0, 1, 0, 5,
     MONS_DWARF,
