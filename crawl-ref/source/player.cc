@@ -1523,6 +1523,8 @@ int player_res_electricity(bool calc_unid, bool temp, bool items)
     {
         // staff
         re += you.wearing(EQ_STAFF, STAFF_AIR, calc_unid);
+        
+        re += you.wearing(EQ_RINGS, RING_ELEC_RESISTANCE, calc_unid);
 
         // body armour:
         const item_def *body_armour = you.slot_item(EQ_BODY_ARMOUR);
@@ -5932,7 +5934,7 @@ int player::racial_ac(bool temp) const
                        + 100 * max(0, experience_level - 7) * 2 / 5;
         }
         else if (species == SP_FAIRY)
-	        return 300 + 100 * experience_level / 3;
+            return 300 + 100 * experience_level / 3;
     }
 
     return 0;
