@@ -448,12 +448,12 @@ draconian warrior. Her scales seem to shimmer and change colour as you watch.
 %%%%
 Urug
 
-A coarse and lanky orc. Urug lost her eye in a fight with a harpy, and has
-sworn to slay every last one of them. Unfortunately, the vision in her
-remaining eye is not very good, and she has mistaken you for one.
+A coarse and lanky orc. Urug lost his eye in a fight with a harpy, and has
+sworn to slay every last one of them. Unfortunately, the vision in his
+remaining eye is not very good, and he has mistaken you for one.
 {{
     if you.can_smell() then
-        return "She smells terrible."
+        return "He smells terrible."
     end
 }}
 %%%%
