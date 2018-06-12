@@ -1547,7 +1547,6 @@ static bool _randart_is_conflicting(const item_def &item,
         break;
 
     case RING_TELEPORTATION:
-    case RING_TELEPORT_CONTROL:
         conflicts = ARTP_PREVENT_TELEPORTATION;
         break;
 
