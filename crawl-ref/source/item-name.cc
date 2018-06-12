@@ -754,7 +754,7 @@ const char* jewellery_effect_name(int jeweltype, bool terse)
         case RING_PROTECTION:            return "protection";
         case RING_PROTECTION_FROM_FIRE:  return "protection from fire";
         case RING_POISON_RESISTANCE:     return "poison resistance";
-        case RING_ELEC_RESISTANCE:       return "grounding";
+        case RING_ELEC_RESISTANCE:       return "insulation";
         case RING_PROTECTION_FROM_COLD:  return "protection from cold";
         case RING_STRENGTH:              return "strength";
         case RING_SLAYING:               return "slaying";
