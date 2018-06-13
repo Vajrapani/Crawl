@@ -111,7 +111,12 @@ static const armour_def Armour_prop[] =
        EQ_BODY_ARMOUR, SIZE_LITTLE, SIZE_GIANT, false, ARMF_REGENERATION, 0 },
 #endif
     { ARM_TROLL_LEATHER_ARMOUR, "troll leather armour",  4,  -40,    150,
-       EQ_BODY_ARMOUR, SIZE_LITTLE, SIZE_GIANT, false, ARMF_REGENERATION, 50 },
+       EQ_BODY_ARMOUR, SIZE_LITTLE, SIZE_GIANT, false, ARMF_REGENERATION, 20 },
+    { ARM_DEEP_TROLL_LEATHER_ARMOUR, "deep troll leather armour",
+                                                         6,  -70,    250,
+       EQ_BODY_ARMOUR, SIZE_LITTLE, SIZE_GIANT, false, ARMF_REGENERATION, 20 },
+    { ARM_TROLL_IRON_ARMOUR, "troll iron armour",        8, -130,    400,
+       EQ_BODY_ARMOUR, SIZE_LITTLE, SIZE_GIANT, false, ARMF_REGENERATION, 20 },
 
     { ARM_CLOAK,                "cloak",                  1,   0,   45,
         EQ_CLOAK,       SIZE_LITTLE, SIZE_BIG, true },
@@ -1313,8 +1318,8 @@ special_armour_type get_armour_ego_type(const item_def &item)
 /// A map between monster species & their hides.
 static map<monster_type, armour_type> _monster_hides = {
     { MONS_TROLL,               ARM_TROLL_LEATHER_ARMOUR },
-    { MONS_DEEP_TROLL,          ARM_TROLL_LEATHER_ARMOUR },
-    { MONS_IRON_TROLL,          ARM_TROLL_LEATHER_ARMOUR },
+    { MONS_DEEP_TROLL,          ARM_DEEP_TROLL_LEATHER_ARMOUR },
+    { MONS_IRON_TROLL,          ARM_TROLL_IRON_ARMOUR },
 
     { MONS_FIRE_DRAGON,         ARM_FIRE_DRAGON_ARMOUR },
     { MONS_ICE_DRAGON,          ARM_ICE_DRAGON_ARMOUR },
