@@ -749,7 +749,6 @@ void get_cleave_targets(const actor &attacker, const coord_def& def,
     }
 }
 
-
 /**
  * Attack a provided list of cleave targets.
  *
