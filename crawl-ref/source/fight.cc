@@ -708,12 +708,12 @@ void get_cleave_targets(const actor &attacker, const coord_def& def,
         coord_def atk_vector = def - atk;
         const int dir = random_choose(-1, 1);
 
-        for (int i = 0; i < 7; ++i)
+        for (int i = 0; i < 8; ++i)
         {
             atk_vector = rotate_adjacent(atk_vector, dir);
 
             actor *target = actor_at(atk + atk_vector);
-            if (target && !_dont_harm(attacker, *target))
+            if (target && !_dont_harm(attacker, *target) && def != atk + atk_vector)
                 targets.push_back(target);
         }
 		
@@ -726,12 +726,12 @@ void get_cleave_targets(const actor &attacker, const coord_def& def,
 			atk_vector += (def - atk);
 		}
 		
-		for (int i = 0; i < 15; ++i)
+		for (int i = 0; i < 16; ++i)
 		{
 			atk_vector = rotate_adjacent(atk_vector, dir, radius);
 			
 			actor *target = actor_at(atk + atk_vector);
-			if (target && !_dont_harm(attacker, *target))
+			if (target && !_dont_harm(attacker, *target) && def != atk + atk_vector)
 				targets.push_back(target);
 		}
 	}
