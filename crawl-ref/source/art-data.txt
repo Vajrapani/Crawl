@@ -1315,6 +1315,7 @@ TILE:     urand_xtahua_scales
 TILE_EQ:  xtahua_scales
 MAGIC:    1
 FIRE:     1
+BOOL:     nogen
 
 # This entry must always be last.
 ENUM:   DUMMY2
