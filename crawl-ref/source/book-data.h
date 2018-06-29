@@ -102,7 +102,6 @@ static const vector<spell_type> spellbook_templates[] =
     SPELL_SUBLIMATION_OF_BLOOD,
     SPELL_AGONY,
     SPELL_DISPEL_UNDEAD,
-    SPELL_EXCRUCIATING_WOUNDS,
     SPELL_BOLT_OF_DRAINING,
 },
 
@@ -169,7 +168,6 @@ static const vector<spell_type> spellbook_templates[] =
     SPELL_SUMMON_SMALL_MAMMAL,
     SPELL_CALL_IMP,
     SPELL_CALL_CANINE_FAMILIAR,
-    SPELL_SUMMON_GUARDIAN_GOLEM,
     SPELL_SUMMON_LIGHTNING_SPIRE,
     SPELL_SUMMON_ICE_BEAST,
 },
@@ -264,7 +262,7 @@ static const vector<spell_type> spellbook_templates[] =
 
 {   // Book of Power
     SPELL_BATTLESPHERE,
-    SPELL_VENOM_BOLT,
+    SPELL_POISON_ARROW,
     SPELL_BOLT_OF_MAGMA,
     SPELL_IRON_SHOT,
     SPELL_IOOD,

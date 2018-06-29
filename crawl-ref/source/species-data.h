@@ -135,7 +135,7 @@ static const map<species_type, species_def> species_data =
     "Dg",
     "Demigod", "Divine", nullptr,
     SPF_NONE,
-    -2, 1, 2, 4,
+    -1, 1, 2, 4,
     MONS_DEMIGOD,
     HT_LAND, US_ALIVE, SIZE_MEDIUM,
     11, 12, 11, // 34
@@ -350,7 +350,7 @@ static const map<species_type, species_def> species_data =
       { MUT_SHAGGY_FUR, 1, 1 }, { MUT_ACUTE_VISION, 1, 1 }, { MUT_PAWS, 1, 1 },
       { MUT_SLOW_METABOLISM, 1, 1 }, { MUT_CLAWS, 1, 1 },
       { MUT_SHAGGY_FUR, 1, 6 }, { MUT_SHAGGY_FUR, 1, 12 }, },
-    { "You cannot wear armour.",
+    { "You cannot wear almost all types of armour.",
       "You are incapable of wielding weapons or throwing items.",
       "Your paws allow you to move quietly. (Stealth)" },
     { "no armour", "no weapons or thrown items", "stealth" },
@@ -420,22 +420,6 @@ static const map<species_type, species_def> species_data =
     { SK_UNARMED_COMBAT, SK_BOWS, SK_CROSSBOWS, SK_SLINGS },
 } },
 
-{ SP_HALFLING, {
-    "Ha",
-    "Halfling", nullptr, nullptr,
-    SPF_NONE,
-    1, -1, 0, 3,
-    MONS_HALFLING,
-    HT_LAND, US_ALIVE, SIZE_SMALL,
-    9, 6, 9, // 24
-    { STAT_DEX }, 5,
-    { { MUT_MUTATION_RESISTANCE, 1, 1 }, },
-    {},
-    {},
-    { JOB_FIGHTER, JOB_HUNTER, JOB_BERSERKER, JOB_ABYSSAL_KNIGHT, JOB_SKALD },
-    { SK_SHORT_BLADES, SK_LONG_BLADES, SK_AXES, SK_SLINGS },
-} },
-
 { SP_HILL_ORC, {
     "HO",
     "Hill Orc", "Orcish", "Orc",
@@ -475,17 +459,17 @@ static const map<species_type, species_def> species_data =
     "Ko",
     "Kobold", nullptr, nullptr,
     SPF_NONE,
-    1, -2, 0, 3,
+    1, -1, 0, 3,
     MONS_KOBOLD,
     HT_LAND, US_ALIVE, SIZE_SMALL,
     5, 9, 10, // 24
     { STAT_STR, STAT_INT, STAT_DEX }, 5,
-    { { MUT_CARNIVOROUS, 1, 1 }, },
+    { { MUT_CARNIVOROUS, 1, 1 }, { MUT_MUTATION_RESISTANCE, 1, 1 } },
     {},
     {},
-    { JOB_HUNTER, JOB_BERSERKER, JOB_ARCANE_MARKSMAN, JOB_ENCHANTER,
-      JOB_CONJURER, JOB_SUMMONER },
-    { SK_SHORT_BLADES, SK_MACES_FLAILS, SK_STAVES, SK_CROSSBOWS },
+    { JOB_HUNTER, JOB_BERSERKER, JOB_SKALD, JOB_ENCHANTER,
+      JOB_ICE_ELEMENTALIST, JOB_EARTH_ELEMENTALIST },
+    { SK_SHORT_BLADES, SK_LONG_BLADES, SK_SLINGS, SK_CROSSBOWS,  },
 } },
 
 { SP_MERFOLK, {
@@ -660,6 +644,42 @@ static const map<species_type, species_def> species_data =
     { SK_UNARMED_COMBAT, SK_MACES_FLAILS },
 } },
 
+{ SP_DUSK_WALKER, {
+    "DW",
+    "Dusk Walker", nullptr, nullptr,
+    SPF_NONE,
+    -1, -1, 0, 6,
+    MONS_SHADOW,
+    HT_LAND, US_ALIVE, SIZE_MEDIUM,
+    12, 8, 8, // 28
+    { STAT_STR, STAT_INT, STAT_DEX }, 4,
+    {{ MUT_NIGHTSTALKER, 1, 4}, { MUT_FANGS, 2, 1 },
+    { MUT_FANGS, 1, 8 }, { MUT_NIGHTSTALKER, 1, 12}, { MUT_NIGHTSTALKER, 1, 20}},
+    {"Your attacks drain your enemies",
+    "You move stealthily even while encumbered by armour"},
+    {"draining touch" , "unencumbered stealth"},
+    { JOB_VENOM_MAGE, JOB_GLADIATOR, JOB_NECROMANCER, JOB_ICE_ELEMENTALIST,
+      JOB_ASSASSIN, JOB_EARTH_ELEMENTALIST },
+    { SK_STAVES, SK_SHORT_BLADES},
+} },
+
+{ SP_SAND_DWARF, {
+    "SD",
+    "Sand Dwarf", "Dwarven", nullptr,
+    SPF_NONE,
+    0, 1, 0, 5,
+    MONS_DWARF,
+    HT_LAND, US_ALIVE, SIZE_SMALL,
+    12, 8, 6, // 26
+    { STAT_STR, STAT_INT }, 4,
+    { { MUT_SLOW, 1, 1 }, { MUT_NO_ARMOUR_CAST_PENALTY, 1, 1} },
+    {},
+    {},
+    { JOB_FIGHTER, JOB_GLADIATOR, JOB_HUNTER, JOB_BERSERKER,
+      JOB_SKALD, JOB_WIZARD, JOB_EARTH_ELEMENTALIST, JOB_ARTIFICER },
+    { SK_MACES_FLAILS, SK_AXES, SK_CROSSBOWS, SK_SLINGS },
+} },
+
 { SP_VAMPIRE, {
     "Vp",
     "Vampire", "Vampiric", nullptr,
@@ -691,7 +711,7 @@ static const map<species_type, species_def> species_data =
     { { MUT_FANGS, 2, 1 }, { MUT_FANGS, 1, 8 },
       { MUT_MANA_SHIELD, 1, 1 }, { MUT_ANTIMAGIC_BITE, 1, 1 },
       { MUT_NO_POTION_HEAL, 3, 1 }, { MUT_ROT_IMMUNITY, 1, 1 },
-      { MUT_REGENERATION, 1, 4 }, { MUT_REGENERATION, 1, 12 }, },
+      { MUT_REGENERATION, 1, 1 }, { MUT_REGENERATION, 1, 12 }, },
     {},
     {},
     { JOB_FIGHTER, JOB_ASSASSIN, JOB_BERSERKER, JOB_ENCHANTER, JOB_CONJURER,
@@ -763,6 +783,22 @@ static const map<species_type, species_def> species_data =
     { JOB_HUNTER, JOB_SKALD, JOB_WIZARD, JOB_CONJURER, JOB_FIRE_ELEMENTALIST,
       JOB_ICE_ELEMENTALIST, JOB_AIR_ELEMENTALIST },
     { SK_SHORT_BLADES, SK_LONG_BLADES, SK_STAVES, SK_BOWS },
+} },
+
+{ SP_HALFLING, {
+    "Ha",
+    "Halfling", nullptr, nullptr,
+    SPF_NONE,
+    1, -1, 0, 3,
+    MONS_HALFLING,
+    HT_LAND, US_ALIVE, SIZE_SMALL,
+    9, 6, 9, // 24
+    { STAT_DEX }, 5,
+    { { MUT_MUTATION_RESISTANCE, 1, 1 }, },
+    {},
+    {},
+    { JOB_FIGHTER, JOB_HUNTER, JOB_BERSERKER, JOB_ABYSSAL_KNIGHT, JOB_SKALD },
+    { SK_SHORT_BLADES, SK_LONG_BLADES, SK_AXES, SK_SLINGS },
 } },
 #endif
 // Ideally this wouldn't be necessary...

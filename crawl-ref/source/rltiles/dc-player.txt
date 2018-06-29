@@ -82,6 +82,7 @@ formicid FORMICID
 vine_stalker_f VINE_STALKER
 vine_stalker_m
 faerie_dragon FAERIE_DRAGON
+dusk_walker DUSK_WALKER
 
 # draconians
 draconian_f DRACONIAN DRACONIAN_FIRST
@@ -507,7 +508,7 @@ flaming_death FLAMING_DEATH
 leech LEECH
 morg MORG
 plutonium_sword PLUTONIUM_SWORD
-zealot_sword ZEALOT_SWORD
+jihad JIHAD
 singing_sword SINGING_SWORD
 zonguldrok ZONGULDROK
 sword_of_power SWORD_OF_POWER

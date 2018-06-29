@@ -175,7 +175,7 @@ static const armour_def Armour_prop[] =
     DRAGON_ARMOUR(GOLD,        "gold",                   12, -230,  800,
         ARMF_RES_FIRE | ARMF_RES_COLD | ARMF_RES_POISON),
     DRAGON_ARMOUR(IRON,        "iron",                   16, -270,  800,
-	ARMF_NO_FLAGS),
+        ARMF_NO_FLAGS),
         
 
 #undef DRAGON_ARMOUR
@@ -398,7 +398,7 @@ static const weapon_def Weapon_prop[] =
         SK_MACES_FLAILS, SIZE_LITTLE, SIZE_LITTLE, MI_NONE,
         DAMV_CRUSHING, 8, 10, 35, M_AND_F_BRANDS },
     { WPN_MORNINGSTAR,       "morningstar",        13, -2, 15,
-        SK_MACES_FLAILS, SIZE_LITTLE, SIZE_LITTLE, MI_NONE,
+        SK_MACES_FLAILS, SIZE_LITTLE, SIZE_MEDIUM, MI_NONE,
         DAMV_CRUSHING | DAM_PIERCE, 7, 10, 40, {
             { SPWPN_PROTECTION,     30 },
             { SPWPN_NORMAL,         15 },
@@ -423,7 +423,7 @@ static const weapon_def Weapon_prop[] =
         SK_MACES_FLAILS, SIZE_MEDIUM, NUM_SIZE_LEVELS, MI_NONE,
         DAMV_CRUSHING | DAM_PIERCE, 2, 10, 40, M_AND_F_BRANDS },
     { WPN_EVENINGSTAR,       "eveningstar",        15, -1, 15,
-        SK_MACES_FLAILS, SIZE_LITTLE, SIZE_LITTLE, MI_NONE,
+        SK_MACES_FLAILS, SIZE_LITTLE, SIZE_MEDIUM, MI_NONE,
         DAMV_CRUSHING | DAM_PIERCE, 0, 2, 150, {
             { SPWPN_PROTECTION,     30 },
             { SPWPN_DRAINING,       19 },
@@ -682,7 +682,7 @@ struct food_def
 static int Food_index[NUM_FOODS];
 static const food_def Food_prop[] =
 {
-    { FOOD_RATION,       "ration",       3400,  1900,  1900 },
+    { FOOD_RATION,       "ration",       3400,  1900,  3400 },
     { FOOD_CHUNK,        "chunk",        1000,  1300,     0 },
 
 #if TAG_MAJOR_VERSION == 34
@@ -741,9 +741,9 @@ const set<pair<object_class_type, int> > removed_items =
 #if TAG_MAJOR_VERSION == 34
     { OBJ_JEWELLERY, AMU_CONTROLLED_FLIGHT },
     { OBJ_JEWELLERY, AMU_CONSERVATION },
+    { OBJ_JEWELLERY, AMU_HARM },
     { OBJ_JEWELLERY, RING_REGENERATION },
     { OBJ_JEWELLERY, RING_SUSTAIN_ATTRIBUTES },
-    { OBJ_JEWELLERY, RING_TELEPORT_CONTROL },
     { OBJ_STAVES,    STAFF_ENCHANTMENT },
     { OBJ_STAVES,    STAFF_CHANNELING },
     { OBJ_POTIONS,   POT_GAIN_STRENGTH },
@@ -851,12 +851,16 @@ bool item_is_cursable(const item_def &item, bool ignore_holy_wrath)
     if (!ignore_holy_wrath
         && item.base_type == OBJ_WEAPONS
         && (get_weapon_brand(item) == SPWPN_HOLY_WRATH
+#if TAG_MAJOR_VERSION == 34
             || you.duration[DUR_EXCRUCIATING_WOUNDS]
                && item_is_equipped(item)
-               && you.props[ORIGINAL_BRAND_KEY].get_int() == SPWPN_HOLY_WRATH))
+               && you.props[ORIGINAL_BRAND_KEY].get_int() == SPWPN_HOLY_WRATH
+#endif
+    ))
     {
         return false;
     }
+
     return true;
 }
 
@@ -919,9 +923,12 @@ void do_curse_item(item_def &item, bool quiet)
     // Holy wrath weapons cannot be cursed.
     if (item.base_type == OBJ_WEAPONS
         && (get_weapon_brand(item) == SPWPN_HOLY_WRATH
+#if TAG_MAJOR_VERSION == 34
             || you.duration[DUR_EXCRUCIATING_WOUNDS]
                && item_is_equipped(item)
-               && you.props[ORIGINAL_BRAND_KEY].get_int() == SPWPN_HOLY_WRATH))
+               && you.props[ORIGINAL_BRAND_KEY].get_int() == SPWPN_HOLY_WRATH
+#endif
+    ))
     {
         if (!quiet)
         {
@@ -2535,6 +2542,9 @@ int get_jewellery_res_elec(const item_def &ring, bool check_artp)
     ASSERT(ring.base_type == OBJ_JEWELLERY);
 
     int res = 0;
+    
+    if (ring.sub_type == RING_ELEC_RESISTANCE)
+        res += 1;
 
     if (check_artp && is_artefact(ring))
         res += artefact_property(ring, ARTP_ELECTRICITY);
@@ -2731,6 +2741,7 @@ bool gives_resistance(const item_def &item)
         {
             if (item.sub_type == RING_PROTECTION_FROM_FIRE
                 || item.sub_type == RING_POISON_RESISTANCE
+                || item.sub_type == RING_ELEC_RESISTANCE
                 || item.sub_type == RING_PROTECTION_FROM_COLD
                 || item.sub_type == RING_SEE_INVISIBLE
                 || item.sub_type == RING_LIFE_PROTECTION

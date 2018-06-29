@@ -16,8 +16,7 @@ function line_setup(e)
   e.kfeat("x = permarock_wall")
   e.colour("x = brown")
   e.kfeat("# = permarock_wall")
-  e.lua_marker('t', props_marker { veto_fragmentation="veto",
-                                   veto_disintegrate="veto",
+  e.lua_marker('t', props_marker { veto_dig="veto",
                                    veto_shatter="veto",
                                    veto_fire="veto" })
 end
@@ -275,7 +274,7 @@ ENDMAP
 NAME:     d_10
 TAGS:     d_10
 KMONS:    1 = place:D:10
-KMONS:    2 = place:D:13
+KMONS:    2 = place:D:11
 : line_setup(_G)
 : lua_marker('~', props_marker {
 :           door_description_suffix=" to the Dungeon",
@@ -464,7 +463,7 @@ ENDMAP
 
 NAME:     d_15
 TAGS:     d_15
-KMONS:    1 = place:D:15
+KMONS:    1 = place:D:12
 KMONS:    2 = place:Depths:1
 : line_setup(_G)
 : general_item_setup(_G)

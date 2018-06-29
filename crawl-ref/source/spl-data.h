@@ -127,7 +127,7 @@ static const struct spell_desc spelldata[] =
     SPFLAG_DIR_OR_TARGET | SPFLAG_NEEDS_TRACER,
     6,
     200,
-    5, 5,
+    6, 6,
     6, 0,
     TILEG_BOLT_OF_COLD,
 },
@@ -250,7 +250,7 @@ static const struct spell_desc spelldata[] =
     SPFLAG_DIR_OR_TARGET | SPFLAG_NEEDS_TRACER,
     2,
     50,
-    6, 6,
+    LOS_RADIUS, LOS_RADIUS,
     2, 0,
     TILEG_THROW_FROST,
 },
@@ -849,6 +849,7 @@ static const struct spell_desc spelldata[] =
     TILEG_POISON_ARROW,
 },
 
+#if TAG_MAJOR_VERSION == 34
 {
     SPELL_TWISTED_RESURRECTION, "Twisted Resurrection",
     SPTYP_NECROMANCY,
@@ -859,6 +860,7 @@ static const struct spell_desc spelldata[] =
     4, 0,
     TILEG_GENERIC_MONSTER_SPELL,
 },
+#endif
 
 {
     SPELL_REGENERATION, "Regeneration",
@@ -1342,10 +1344,10 @@ static const struct spell_desc spelldata[] =
 {
     SPELL_PASSWALL, "Passwall",
     SPTYP_TRANSMUTATION | SPTYP_EARTH,
-    SPFLAG_DIR | SPFLAG_ESCAPE | SPFLAG_NOT_SELF | SPFLAG_UTILITY,
+    SPFLAG_TARGET | SPFLAG_ESCAPE | SPFLAG_NOT_SELF | SPFLAG_UTILITY,
     2,
-    200,
-    1, 9,
+    120,
+    1, 7,
     0, 0, // make silent to keep passwall a viable stabbing spell [rob]
     TILEG_PASSWALL,
 },
@@ -1622,6 +1624,7 @@ static const struct spell_desc spelldata[] =
     TILEG_CHAIN_LIGHTNING,
 },
 
+#if TAG_MAJOR_VERSION == 34
 {
     SPELL_EXCRUCIATING_WOUNDS, "Excruciating Wounds",
     SPTYP_CHARMS | SPTYP_NECROMANCY,
@@ -1632,6 +1635,7 @@ static const struct spell_desc spelldata[] =
     4, 15,
     TILEG_EXCRUCIATING_WOUNDS,
 },
+#endif
 
 {
     SPELL_PORTAL_PROJECTILE, "Portal Projectile",
@@ -2525,7 +2529,7 @@ static const struct spell_desc spelldata[] =
 {
     SPELL_INNER_FLAME, "Inner Flame",
     SPTYP_HEXES | SPTYP_FIRE,
-    SPFLAG_DIR_OR_TARGET | SPFLAG_NOT_SELF | SPFLAG_NEUTRAL | SPFLAG_MR_CHECK,
+    SPFLAG_DIR_OR_TARGET | SPFLAG_NOT_SELF | SPFLAG_NEUTRAL,
     3,
     200,
     LOS_RADIUS, LOS_RADIUS,
@@ -3165,13 +3169,14 @@ static const struct spell_desc spelldata[] =
     SPELL_SUMMON_LIGHTNING_SPIRE, "Summon Lightning Spire",
     SPTYP_SUMMONING | SPTYP_AIR,
     SPFLAG_TARGET | SPFLAG_NOT_SELF | SPFLAG_NEUTRAL,
-    4,
+    5,
     100,
     2, 2,
     2, 0,
     TILEG_SUMMON_LIGHTNING_SPIRE,
 },
 
+#if TAG_MAJOR_VERSION == 34
 {
     SPELL_SUMMON_GUARDIAN_GOLEM, "Summon Guardian Golem",
     SPTYP_SUMMONING | SPTYP_HEXES,
@@ -3182,6 +3187,7 @@ static const struct spell_desc spelldata[] =
     3, 0,
     TILEG_SUMMON_GUARDIAN_GOLEM,
 },
+#endif
 
 {
     SPELL_SHADOW_SHARD, "Shadow Shard",
@@ -3622,7 +3628,7 @@ static const struct spell_desc spelldata[] =
 {
     SPELL_THROW_ALLY, "Throw Ally",
     SPTYP_TRANSLOCATION,
-    SPFLAG_MONSTER | SPFLAG_NOT_SELF,
+    SPFLAG_TARGET | SPFLAG_MONSTER | SPFLAG_NOT_SELF,
     2,
     50,
     LOS_RADIUS, LOS_RADIUS,

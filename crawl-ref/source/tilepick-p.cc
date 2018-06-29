@@ -570,8 +570,10 @@ tileidx_t tilep_species_to_base_tile(int sp, int level)
 #endif
     case SP_DEEP_ELF:
         return TILEP_BASE_DEEP_ELF;
+#if TAG_MAJOR_VERSION == 34
     case SP_HALFLING:
         return TILEP_BASE_HALFLING;
+#endif
     case SP_HILL_ORC:
         return TILEP_BASE_ORC;
     case SP_KOBOLD:
@@ -631,6 +633,10 @@ tileidx_t tilep_species_to_base_tile(int sp, int level)
         return TILEP_BASE_BARACHI;
     case SP_FAIRY:
         return TILEP_BASE_FAERIE_DRAGON;
+    case SP_DUSK_WALKER:
+        return TILEP_BASE_DUSK_WALKER;
+    case SP_SAND_DWARF:
+        return TILEP_BASE_HALFLING;
     default:
         return TILEP_BASE_HUMAN;
     }
@@ -959,7 +965,14 @@ void tilep_job_default(int job, dolls_data *doll)
         case JOB_WANDERER:
             parts[TILEP_PART_BODY]  = TILEP_BODY_SHIRT_HAWAII;
             parts[TILEP_PART_LEG]   = TILEP_LEG_PANTS_SHORT_BROWN;
-            parts[TILEP_PART_BOOTS] = TILEP_BOOTS_MIDDLE_BROWN3;
+            break;
+
+        case JOB_ARCHAEOLOGIST:
+            parts[TILEP_PART_HELM]  = TILEP_HELM_HAT_BLACK;
+            parts[TILEP_PART_BODY]  = TILEP_BODY_SLIT_BLACK;
+            parts[TILEP_PART_LEG]   = TILEP_LEG_PANTS_SHORT_DARKBROWN;
+            parts[TILEP_PART_BOOTS] = TILEP_BOOTS_MESH_BLACK;
+            parts[TILEP_PART_ARM]   = TILEP_ARM_GLOVE_BROWN;
             break;
 
         case JOB_ARTIFICER:

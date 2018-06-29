@@ -161,7 +161,6 @@ static const species_skill_aptitude species_skill_aptitudes[] =
     APT(SP_SLUDGE_ELF,      SK_POISON_MAGIC,    1),
     APT(SP_SLUDGE_ELF,      SK_INVOCATIONS,     1),
     APT(SP_SLUDGE_ELF,      SK_EVOCATIONS,      0),
-#endif
 
     // SP_HALFLING
     APT(SP_HALFLING,        SK_FIGHTING,       -1),
@@ -178,13 +177,9 @@ static const species_skill_aptitude species_skill_aptitudes[] =
     APT(SP_HALFLING,        SK_ARMOUR,          1),
     APT(SP_HALFLING,        SK_DODGING,         1),
     APT(SP_HALFLING,        SK_STEALTH,         2),
-#if TAG_MAJOR_VERSION == 34
     APT(SP_HALFLING,        SK_STABBING,      UNUSABLE_SKILL),
-#endif
     APT(SP_HALFLING,        SK_SHIELDS,         1),
-#if TAG_MAJOR_VERSION == 34
     APT(SP_HALFLING,        SK_TRAPS,         UNUSABLE_SKILL),
-#endif
     APT(SP_HALFLING,        SK_UNARMED_COMBAT, -2),
     APT(SP_HALFLING,        SK_SPELLCASTING,   -3),
     APT(SP_HALFLING,        SK_CONJURATIONS,   -2),
@@ -201,6 +196,7 @@ static const species_skill_aptitude species_skill_aptitudes[] =
     APT(SP_HALFLING,        SK_POISON_MAGIC,    0),
     APT(SP_HALFLING,        SK_INVOCATIONS,     1),
     APT(SP_HALFLING,        SK_EVOCATIONS,      0),
+#endif
 
     // SP_HILL_ORC
     APT(SP_HILL_ORC,        SK_FIGHTING,        2),
@@ -242,36 +238,36 @@ static const species_skill_aptitude species_skill_aptitudes[] =
     APT(SP_HILL_ORC,        SK_EVOCATIONS,      0),
 
     // SP_KOBOLD
-    APT(SP_KOBOLD,          SK_FIGHTING,        1),
+    APT(SP_KOBOLD,          SK_FIGHTING,       -1),
     APT(SP_KOBOLD,          SK_SHORT_BLADES,    3),
-    APT(SP_KOBOLD,          SK_LONG_BLADES,    -2),
-    APT(SP_KOBOLD,          SK_AXES,           -2),
+    APT(SP_KOBOLD,          SK_LONG_BLADES,     0),
+    APT(SP_KOBOLD,          SK_AXES,           -1),
     APT(SP_KOBOLD,          SK_MACES_FLAILS,   -1),
     APT(SP_KOBOLD,          SK_POLEARMS,       -2),
-    APT(SP_KOBOLD,          SK_STAVES,         -1),
-    APT(SP_KOBOLD,          SK_SLINGS,          0),
+    APT(SP_KOBOLD,          SK_STAVES,         -2),
+    APT(SP_KOBOLD,          SK_SLINGS,          2),
     APT(SP_KOBOLD,          SK_BOWS,            0),
     APT(SP_KOBOLD,          SK_CROSSBOWS,       2),
-    APT(SP_KOBOLD,          SK_THROWING,        1),
-    APT(SP_KOBOLD,          SK_ARMOUR,         -2),
+    APT(SP_KOBOLD,          SK_THROWING,        2),
+    APT(SP_KOBOLD,          SK_ARMOUR,          0),
     APT(SP_KOBOLD,          SK_DODGING,         2),
     APT(SP_KOBOLD,          SK_STEALTH,         4),
 #if TAG_MAJOR_VERSION == 34
     APT(SP_KOBOLD,          SK_STABBING,      UNUSABLE_SKILL),
 #endif
-    APT(SP_KOBOLD,          SK_SHIELDS,        -2),
+    APT(SP_KOBOLD,          SK_SHIELDS,         1),
 #if TAG_MAJOR_VERSION == 34
     APT(SP_KOBOLD,          SK_TRAPS,         UNUSABLE_SKILL),
 #endif
     APT(SP_KOBOLD,          SK_UNARMED_COMBAT,  0),
     APT(SP_KOBOLD,          SK_SPELLCASTING,    0),
-    APT(SP_KOBOLD,          SK_CONJURATIONS,    0),
-    APT(SP_KOBOLD,          SK_HEXES,           0),
-    APT(SP_KOBOLD,          SK_CHARMS,         -2),
-    APT(SP_KOBOLD,          SK_SUMMONINGS,      0),
-    APT(SP_KOBOLD,          SK_NECROMANCY,      0),
-    APT(SP_KOBOLD,          SK_TRANSLOCATIONS,  0),
-    APT(SP_KOBOLD,          SK_TRANSMUTATIONS,  0),
+    APT(SP_KOBOLD,          SK_CONJURATIONS,   -1),
+    APT(SP_KOBOLD,          SK_HEXES,          -1),
+    APT(SP_KOBOLD,          SK_CHARMS,          0),
+    APT(SP_KOBOLD,          SK_SUMMONINGS,     -1),
+    APT(SP_KOBOLD,          SK_NECROMANCY,     -1),
+    APT(SP_KOBOLD,          SK_TRANSLOCATIONS,  1),
+    APT(SP_KOBOLD,          SK_TRANSMUTATIONS, -3),
     APT(SP_KOBOLD,          SK_FIRE_MAGIC,      0),
     APT(SP_KOBOLD,          SK_ICE_MAGIC,       0),
     APT(SP_KOBOLD,          SK_AIR_MAGIC,       0),
@@ -279,6 +275,45 @@ static const species_skill_aptitude species_skill_aptitudes[] =
     APT(SP_KOBOLD,          SK_POISON_MAGIC,    0),
     APT(SP_KOBOLD,          SK_INVOCATIONS,     1),
     APT(SP_KOBOLD,          SK_EVOCATIONS,      2),
+
+    // SP_SAND_DWARF
+    APT(SP_SAND_DWARF,  SK_FIGHTING,        2),
+    APT(SP_SAND_DWARF,  SK_SHORT_BLADES,   -2),
+    APT(SP_SAND_DWARF,  SK_LONG_BLADES,    -2),
+    APT(SP_SAND_DWARF,  SK_AXES,            2),
+    APT(SP_SAND_DWARF,  SK_MACES_FLAILS,    4),
+    APT(SP_SAND_DWARF,  SK_POLEARMS,       -1),
+    APT(SP_SAND_DWARF,  SK_STAVES,          0),
+    APT(SP_SAND_DWARF,  SK_SLINGS,          0),
+    APT(SP_SAND_DWARF,  SK_BOWS,           -2),
+    APT(SP_SAND_DWARF,  SK_CROSSBOWS,       2),
+    APT(SP_SAND_DWARF,  SK_THROWING,        0),
+    APT(SP_SAND_DWARF,  SK_ARMOUR,          2),
+    APT(SP_SAND_DWARF,  SK_DODGING,        -2),
+    APT(SP_SAND_DWARF,  SK_STEALTH,        -2),
+    #if TAG_MAJOR_VERSION == 34
+    APT(SP_SAND_DWARF,  SK_STABBING,      UNUSABLE_SKILL),
+    #endif
+    APT(SP_SAND_DWARF,  SK_SHIELDS,         0),
+    #if TAG_MAJOR_VERSION == 34
+    APT(SP_SAND_DWARF,  SK_TRAPS,         UNUSABLE_SKILL),
+    #endif
+    APT(SP_SAND_DWARF,  SK_UNARMED_COMBAT,  1),
+    APT(SP_SAND_DWARF,  SK_SPELLCASTING,   -1),
+    APT(SP_SAND_DWARF,  SK_CONJURATIONS,   -4),
+    APT(SP_SAND_DWARF,  SK_HEXES,          -2),
+    APT(SP_SAND_DWARF,  SK_CHARMS,          0),
+    APT(SP_SAND_DWARF,  SK_SUMMONINGS,     -2),
+    APT(SP_SAND_DWARF,  SK_NECROMANCY,      0),
+    APT(SP_SAND_DWARF,  SK_TRANSLOCATIONS, -2),
+    APT(SP_SAND_DWARF,  SK_TRANSMUTATIONS, -2),
+    APT(SP_SAND_DWARF,  SK_FIRE_MAGIC,      2),
+    APT(SP_SAND_DWARF,  SK_ICE_MAGIC,      -2),
+    APT(SP_SAND_DWARF,  SK_AIR_MAGIC,      -2),
+    APT(SP_SAND_DWARF,  SK_EARTH_MAGIC,     2),
+    APT(SP_SAND_DWARF,  SK_POISON_MAGIC,    0),
+    APT(SP_SAND_DWARF,  SK_INVOCATIONS,    -1),
+    APT(SP_SAND_DWARF,  SK_EVOCATIONS,      3),
 
     // SP_MUMMY
     APT(SP_MUMMY,           SK_FIGHTING,        0),
@@ -1252,6 +1287,45 @@ static const species_skill_aptitude species_skill_aptitudes[] =
     APT(SP_DEEP_DWARF,      SK_POISON_MAGIC,   -2),
     APT(SP_DEEP_DWARF,      SK_INVOCATIONS,     3),
     APT(SP_DEEP_DWARF,      SK_EVOCATIONS,      3),
+
+    // SP_DUSK_WALKER
+    APT(SP_DUSK_WALKER,      SK_FIGHTING,        0),
+    APT(SP_DUSK_WALKER,      SK_SHORT_BLADES,    2),
+    APT(SP_DUSK_WALKER,      SK_LONG_BLADES,     1),
+    APT(SP_DUSK_WALKER,      SK_AXES,           -1),
+    APT(SP_DUSK_WALKER,      SK_MACES_FLAILS,   -1),
+    APT(SP_DUSK_WALKER,      SK_POLEARMS,       -1),
+    APT(SP_DUSK_WALKER,      SK_STAVES,          3),
+    APT(SP_DUSK_WALKER,      SK_SLINGS,          0),
+    APT(SP_DUSK_WALKER,      SK_BOWS,           -3),
+    APT(SP_DUSK_WALKER,      SK_CROSSBOWS,      -1),
+    APT(SP_DUSK_WALKER,      SK_THROWING,       -2),
+    APT(SP_DUSK_WALKER,      SK_ARMOUR,          1),
+    APT(SP_DUSK_WALKER,      SK_DODGING,         0),
+    APT(SP_DUSK_WALKER,      SK_STEALTH,         5),
+    #if TAG_MAJOR_VERSION == 34
+    APT(SP_DUSK_WALKER,      SK_STABBING,      UNUSABLE_SKILL),
+    #endif
+    APT(SP_DUSK_WALKER,      SK_SHIELDS,         0),
+    #if TAG_MAJOR_VERSION == 34
+    APT(SP_DUSK_WALKER,      SK_TRAPS,         UNUSABLE_SKILL),
+    #endif
+    APT(SP_DUSK_WALKER,      SK_UNARMED_COMBAT,  0),
+    APT(SP_DUSK_WALKER,      SK_SPELLCASTING,   -1),
+    APT(SP_DUSK_WALKER,      SK_CONJURATIONS,   -1),
+    APT(SP_DUSK_WALKER,      SK_HEXES,          -3),
+    APT(SP_DUSK_WALKER,      SK_CHARMS,          0),
+    APT(SP_DUSK_WALKER,      SK_SUMMONINGS,     -2),
+    APT(SP_DUSK_WALKER,      SK_NECROMANCY,      1),
+    APT(SP_DUSK_WALKER,      SK_TRANSLOCATIONS, -1),
+    APT(SP_DUSK_WALKER,      SK_TRANSMUTATIONS, -1),
+    APT(SP_DUSK_WALKER,      SK_FIRE_MAGIC,     -2),
+    APT(SP_DUSK_WALKER,      SK_ICE_MAGIC,       1),
+    APT(SP_DUSK_WALKER,      SK_AIR_MAGIC,      -1),
+    APT(SP_DUSK_WALKER,      SK_EARTH_MAGIC,     2),
+    APT(SP_DUSK_WALKER,      SK_POISON_MAGIC,    0),
+    APT(SP_DUSK_WALKER,      SK_INVOCATIONS,    -1),
+    APT(SP_DUSK_WALKER,      SK_EVOCATIONS,      0),
 
     // SP_FAIRY
     APT(SP_FAIRY,           SK_FIGHTING,       -1),

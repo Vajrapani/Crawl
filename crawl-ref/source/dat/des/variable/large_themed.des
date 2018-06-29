@@ -1284,12 +1284,12 @@ MONS:   w:4 soul eater / w:1 reaper, reaper, reaper / nothing
 MONS:   zombie / skeleton / w:5 simulacrum
 MONS:   necromancer w:15 / w:5 deep elf death mage, lich, \
         lich / deep elf death mage / nothing
-MONS:   soul eater / w:5 reaper, reaper, tzitzimitl / w:5 reaper
+MONS:   soul eater / w:5 reaper, reaper, shadow fiend / w:5 reaper
 : else
 MONS:   zombie / skeleton / w:5 simulacrum
 MONS:   necromancer / deep elf death mage, \
         w:15 lich / w:5 ancient lich / deep elf death mage, lich / ancient lich
-MONS:   reaper / soul eater, reaper, tzitzimitl
+MONS:   reaper / soul eater, reaper, shadow fiend
 : end
 MARKER: V = lua:fog_machine { cloud_type = "foul pestilence", \
             pow_min = 8, pow_max = 12, delay_min = 20, delay_max = 30, \
@@ -1381,7 +1381,7 @@ SUBST:   BDFHJLNPR = .
 
   kmons("0 = " .. monslist(you.absdepth()))
   kmons("9 = " .. monslist(ninedepth))
-  kmons("8 = " .. monslist(31)) -- this cap's always hit at D:14-
+  kmons("8 = " .. monslist(31)) -- this cap's always hit at D:12-
 }}
 KFEAT: 123456 = .
 validate {{
@@ -1663,7 +1663,7 @@ ENDMAP
 NAME:   kennysheep_tiny_hell
 TAGS:   no_monster_gen
 ORIENT: centre
-DEPTH:  D:13-14
+DEPTH:  D:11-12
 WEIGHT: 5
 FTILE:  *|c.12${} = floor_infernal_blank
 TILE:   c = dngn_stone_dark
@@ -1788,7 +1788,7 @@ xxxwxxxx......xxxw.xx..xxx..xxx
 ENDMAP
 
 NAME:    kennysheep_kobold_grotto
-DEPTH:   D:13-, !D:$
+DEPTH:   D:11-, !D:$
 TAGS:    no_monster_gen
 ORIENT:  northwest
 MONS:    big kobold, patrolling kobold demonologist, kobold, plant
@@ -2139,7 +2139,7 @@ MONS:    shadow, boggart, rakshasa, shadow wraith
 MONS:    vampire knight, shadow demon, shadow dragon
 KMONS:   9 = glowing shapeshifter / spriggan defender / deep elf annihilator
 KMONS:   8 = bone dragon / reaper / doom hound
-KMONS:   _ = tzitzimitl
+KMONS:   _ = shadow fiend
 ITEM:    robe_of_night, ring_of_shadows
 ITEM:    cloak_of_the_thief, boots_of_the_assassin
 ITEM:    shadow dragon scales randart, ring of stealth randart
@@ -2246,7 +2246,7 @@ ENDMAP
 
 NAME:    doesnt_quadruple_sword
 TAGS:    no_monster_gen no_item_gen
-DEPTH:   D:13-
+DEPTH:   D:11-
 ORIENT:  north
 MONS:    dancing weapon ; long sword
 ITEM:    double sword, triple sword

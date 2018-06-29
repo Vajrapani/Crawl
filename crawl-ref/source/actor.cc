@@ -284,10 +284,12 @@ bool actor::reflection(bool calc_unid, bool items) const
     return items && wearing(EQ_AMULET, AMU_REFLECTION, calc_unid);
 }
 
+#if TAG_MAJOR_VERSION == 34
 bool actor::extra_harm(bool calc_unid, bool items) const
 {
     return items && wearing(EQ_AMULET, AMU_HARM, calc_unid);
 }
+#endif
 
 bool actor::rmut_from_item(bool calc_unid) const
 {
@@ -763,22 +765,8 @@ void actor::constriction_damage_defender(actor &defender, int duration)
     {
         exclamations = ", but do no damage.";
     }
-    else if (damage < HIT_WEAK)
-        exclamations = ".";
-    else if (damage < HIT_MED)
-        exclamations = "!";
-    else if (damage < HIT_STRONG)
-        exclamations = "!!";
     else
-    {
-        int tmpdamage = damage;
-        exclamations = "!!!";
-        while (tmpdamage >= 2 * HIT_STRONG)
-        {
-            exclamations += "!";
-            tmpdamage >>= 1;
-        }
-    }
+        exclamations = attack_strength_punctuation(damage);
 
     if (is_player() || you.can_see(*this))
     {

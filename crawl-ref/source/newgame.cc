@@ -180,8 +180,9 @@ static const species_type species_order[] =
     // comparatively human-like looks
     SP_HUMAN,          SP_DEEP_ELF,
     SP_DEEP_DWARF,     SP_HILL_ORC,
+    SP_DUSK_WALKER,
     // small species
-    SP_HALFLING,       SP_KOBOLD,
+    SP_KOBOLD,         SP_SAND_DWARF,
     SP_SPRIGGAN,       SP_FAIRY,
     // large species
     SP_OGRE,           SP_TROLL,
@@ -950,7 +951,7 @@ static species_group species_groups[] =
             SP_MERFOLK,
             SP_GARGOYLE,
             SP_BASE_DRACONIAN,
-            SP_HALFLING,
+            SP_KOBOLD,
             SP_TROLL,
             SP_GHOUL,
             SP_FAIRY,
@@ -962,14 +963,15 @@ static species_group species_groups[] =
         20,
         {
             SP_HUMAN,
-            SP_KOBOLD,
             SP_DEMONSPAWN,
             SP_CENTAUR,
+            SP_SAND_DWARF,
             SP_SPRIGGAN,
             SP_TENGU,
             SP_DEEP_ELF,
             SP_OGRE,
             SP_DEEP_DWARF,
+            SP_DUSK_WALKER,
             SP_GNOLL,
         }
     },
@@ -1073,8 +1075,8 @@ static job_group jobs_order[] =
     },
     {
         "Adventurer",
-        coord_def(0, 7), 15,
-        { JOB_ARTIFICER, JOB_WANDERER }
+        coord_def(0, 7), 17,
+        { JOB_ARTIFICER, JOB_WANDERER, JOB_ARCHAEOLOGIST }
     },
     {
         "Zealot",

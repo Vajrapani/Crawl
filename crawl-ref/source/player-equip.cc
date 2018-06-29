@@ -753,12 +753,13 @@ static void _unequip_weapon_effect(item_def& real_item, bool showMsgs,
                 mprf("%s stops oozing corrosive slime.", msg.c_str());
                 break;
             }
-
+#if TAG_MAJOR_VERSION == 34
             if (you.duration[DUR_EXCRUCIATING_WOUNDS])
             {
                 ASSERT(real_item.defined());
                 end_weapon_brand(real_item, true);
             }
+#endif
         }
         break;
     }
@@ -1144,6 +1145,7 @@ static void _remove_amulet_of_faith(item_def &item)
     }
 }
 
+#if TAG_MAJOR_VERSION == 34
 static void _remove_amulet_of_harm()
 {
     if (you.undead_state() == US_ALIVE)
@@ -1153,6 +1155,7 @@ static void _remove_amulet_of_harm()
 
     drain_player(150, false, true);
 }
+#endif
 
 static void _equip_amulet_of_regeneration()
 {
@@ -1367,6 +1370,7 @@ static void _unequip_jewellery_effect(item_def &item, bool mesg, bool meld,
     case RING_ICE:
     case RING_LIFE_PROTECTION:
     case RING_POISON_RESISTANCE:
+    case RING_ELEC_RESISTANCE:
     case RING_PROTECTION_FROM_COLD:
     case RING_PROTECTION_FROM_FIRE:
     case RING_PROTECTION_FROM_MAGIC:

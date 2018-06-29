@@ -754,10 +754,10 @@ actor* scorefile_entry::killer() const
 
 xlog_fields scorefile_entry::get_fields() const
 {
-    if (!fields.get())
+    if (!fields)
         return xlog_fields();
     else
-        return *fields.get();
+        return *fields;
 }
 
 bool scorefile_entry::parse(const string &line)
@@ -793,7 +793,7 @@ string scorefile_entry::raw_string() const
 
     set_score_fields();
 
-    if (!fields.get())
+    if (!fields)
         return "";
 
     return fields->xlog_line() + "\n";
@@ -1049,7 +1049,7 @@ void scorefile_entry::init_with_fields()
 
 void scorefile_entry::set_base_xlog_fields() const
 {
-    if (!fields.get())
+    if (!fields)
         fields.reset(new xlog_fields);
 
     string score_version = SCORE_VERSION;
@@ -1147,7 +1147,7 @@ void scorefile_entry::set_score_fields() const
 {
     fields.reset(new xlog_fields);
 
-    if (!fields.get())
+    if (!fields)
         return;
 
     set_base_xlog_fields();
@@ -1635,7 +1635,7 @@ void scorefile_entry::init(time_t dt)
     status_info inf;
     for (unsigned i = 0; i <= STATUS_LAST_STATUS; ++i)
     {
-        if (fill_status_info(i, &inf) && !inf.short_text.empty())
+        if (fill_status_info(i, inf) && !inf.short_text.empty())
         {
             if (!status_effects.empty())
                 status_effects += ",";

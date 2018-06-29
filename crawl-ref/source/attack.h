@@ -163,6 +163,7 @@ protected:
     brand_type random_chaos_brand();
     void do_miscast();
     void drain_defender();
+    void bite_drain_defender();
     void drain_defender_speed();
 
     virtual int inflict_damage(int dam, beam_type flavour = NUM_BEAMS,
@@ -170,7 +171,6 @@ protected:
 
     /* Output */
     string debug_damage_number();
-    string attack_strength_punctuation(int dmg);
     string evasion_margin_adverb();
 
     virtual void set_attack_verb(int damage) = 0;
@@ -201,3 +201,5 @@ protected:
     virtual int  player_stab(int damage);
     virtual void player_stab_check();
 };
+
+string attack_strength_punctuation(int dmg);

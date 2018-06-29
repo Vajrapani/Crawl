@@ -1919,6 +1919,22 @@ static const mutation_def mut_data[] =
   {"Your sense of smell gets weaker.", "", ""},
 },
 
+{ MUT_DRAIN_BITE, 0, 1, mutflag::good, true,
+  "draining bite",
+
+  {"Your bite drains your enemy's life force.", "", ""},
+  {"You feel a sudden thirst for living beings", "", ""},
+  {"Your thirst for living beings wanes.", "", ""},
+},
+
+{ MUT_NO_ARMOUR_CAST_PENALTY, 0, 1, mutflag::good, true,
+  "armour attunement",
+
+  {"Armour does not affect your spellcasting.", "", ""},
+  {"You feel attuned to your armour.", "", ""},
+  {"Your armour suddenly feels uncomfortable.", "", ""},
+},
+
 };
 
 static const mutation_category_def category_mut_data[] =

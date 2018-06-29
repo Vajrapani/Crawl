@@ -14,15 +14,15 @@ Arcane Marksman
 Arcane Marksmen carry ranged weapons, and use magic to make their foes more
 vulnerable to attacks from afar.
 %%%%
+Archaeologist
+
+Thoroughly inept at fighting but well dressed, archaeologists enter the dungeon 
+looking to cast light over the origins of ancient relics.
+%%%%
 Artificer
 
 Artificers start with a few magical devices and are competent at using such
 tools.
-%%%%
-Assassin
-
-Assassins carry a blowgun with poisoned needles, as well as a small number of
-nasty curare needles.
 %%%%
 Berserker
 
@@ -82,6 +82,11 @@ Necromancer
 
 Necromancers are wizards specializing in the practice of death magic. They
 start out with the Pain spell.
+%%%%
+Rogue
+
+Rogues carry a blowgun with poisoned needles, as well as a small number of
+nasty curare needles.
 %%%%
 Skald
 

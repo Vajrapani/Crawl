@@ -221,7 +221,6 @@ static const mon_spellbook mspell_list[] =
        { SPELL_CALL_DOWN_DAMNATION, 12, MON_SPELL_PRIEST },
        { SPELL_MALIGN_OFFERING, 18, MON_SPELL_PRIEST },
        { SPELL_SMITING, 18, MON_SPELL_PRIEST },
-       { SPELL_TWISTED_RESURRECTION, 12, MON_SPELL_PRIEST },
       }
     },
 
@@ -238,7 +237,7 @@ static const mon_spellbook mspell_list[] =
        { SPELL_BOLT_OF_DRAINING, 22, MON_SPELL_WIZARD },
        { SPELL_VAMPIRIC_DRAINING, 22, MON_SPELL_WIZARD },
        { SPELL_CALL_LOST_SOUL, 11, MON_SPELL_WIZARD },
-       { SPELL_TWISTED_RESURRECTION, 11, MON_SPELL_WIZARD },
+       { SPELL_HAUNT, 11, MON_SPELL_WIZARD },
       }
     },
 
@@ -1531,7 +1530,7 @@ static const mon_spellbook mspell_list[] =
       }
     },
 
-    {  MST_TZITZIMITL,
+    {  MST_SHADOW_FIEND,
       {
        { SPELL_BOLT_OF_COLD, 15, MON_SPELL_MAGICAL },
        { SPELL_BOLT_OF_DRAINING, 15, MON_SPELL_MAGICAL },
@@ -1544,6 +1543,16 @@ static const mon_spellbook mspell_list[] =
       {
        { SPELL_HURL_DAMNATION, 28, MON_SPELL_MAGICAL },
        { SPELL_IRON_SHOT, 14, MON_SPELL_MAGICAL },
+      }
+    },
+
+    {  MST_ORB_DEMON,
+      {
+       { SPELL_ENERGY_BOLT, 44, MON_SPELL_MAGICAL },
+       { SPELL_REPEL_MISSILES, 11, MON_SPELL_MAGICAL },
+       { SPELL_IOOD, 22 , MON_SPELL_MAGICAL},
+       { SPELL_BLINK_RANGE, 11, MON_SPELL_MAGICAL },
+       { SPELL_DIG, 11, MON_SPELL_MAGICAL},
       }
     },
 

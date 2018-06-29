@@ -767,6 +767,12 @@ void sonic_damage(bool scream)
 
 spret_type vampiric_drain(int pow, monster* mons, bool fail)
 {
+    if (you.hp == you.hp_max)
+    {
+        canned_msg(MSG_FULL_HEALTH);
+        return SPRET_ABORT;
+    }
+
     if (mons == nullptr || mons->submerged())
     {
         fail_check();
@@ -2154,18 +2160,6 @@ bool setup_fragmentation_beam(bolt &beam, int pow, const actor *caster,
     }
 
   do_terrain:
-
-    if (env.markers.property_at(target, MAT_ANY,
-                                "veto_fragmentation") == "veto")
-    {
-        if (caster->is_player() && !quiet)
-        {
-            mprf("%s seems to be unnaturally hard.",
-                 feature_description_at(target, false, DESC_THE, false).c_str());
-        }
-        return false;
-    }
-
     switch (grid)
     {
     // Stone and rock terrain
@@ -2237,7 +2231,6 @@ bool setup_fragmentation_beam(bolt &beam, int pow, const actor *caster,
     case DNGN_CLOSED_DOOR:
     case DNGN_RUNED_DOOR:
     case DNGN_SEALED_DOOR:
-        // Doors always blow up, stone arches never do (would cause problems).
         if (what)
             *what = "door";
         should_destroy_wall = true;
@@ -2348,14 +2341,14 @@ spret_type cast_sandblast(int pow, bolt &beam, bool fail)
         if (i.is_type(OBJ_MISSILES, MI_STONE)
             && check_warning_inscriptions(i, OPER_DESTROY))
         {
-            num_stones += i.quantity;
+            num_stones += i.quantity / 10;
             stone = &i;
         }
     }
 
     if (num_stones == 0)
     {
-        mpr("You don't have any stones to cast with.");
+        mpr("You don't have enough stones to cast with.");
         return SPRET_ABORT;
     }
 
@@ -2364,8 +2357,10 @@ spret_type cast_sandblast(int pow, bolt &beam, bool fail)
 
     if (ret == SPRET_SUCCESS)
     {
-        if (dec_inv_item_quantity(letter_to_index(stone->slot), 1))
-            mpr("You now have no stones remaining.");
+        if (dec_inv_item_quantity(letter_to_index(stone->slot), 10)
+            || stone->quantity < 10)
+            mpr("You now have insufficient stones remaining to "
+                "continue to cast sandblast.");
         else
             mprf_nocap("%s", stone->name(DESC_INVENTORY).c_str());
     }

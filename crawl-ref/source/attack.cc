@@ -10,6 +10,7 @@
 #include "attack.h"
 
 #include <algorithm>
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -935,6 +936,24 @@ void attack::drain_defender()
     }
 }
 
+void attack::bite_drain_defender()
+{
+    if (defender->is_monster() && coinflip())
+        return;
+
+    if (!(defender->holiness() & MH_NATURAL))
+        return;
+
+    special_damage = resist_adjust_damage(defender, BEAM_NEG,
+                                          (1 + random2(damage_done)) / 2);
+
+    if (defender->drain_exp(attacker, true, 20 + min(35, damage_done))
+        && defender_visible)
+    {
+        mprf("Your bite drains %s!", defender_name(true).c_str());
+    }
+}
+
 void attack::drain_defender_speed()
 {
     if (needs_message)
@@ -980,7 +999,7 @@ string attack::debug_damage_number()
  *
  * Used in player / monster (both primary and aux) attacks
  */
-string attack::attack_strength_punctuation(int dmg)
+string attack_strength_punctuation(int dmg)
 {
     if (dmg < HIT_WEAK)
         return ".";
@@ -989,16 +1008,7 @@ string attack::attack_strength_punctuation(int dmg)
     else if (dmg < HIT_STRONG)
         return "!!";
     else
-    {
-        string ret = "!!!";
-        int tmpdamage = dmg;
-        while (tmpdamage >= 2*HIT_STRONG)
-        {
-            ret += "!";
-            tmpdamage >>= 1;
-        }
-        return ret;
-    }
+        return string(3 + (int) log2(dmg / HIT_STRONG), '!');
 }
 
 /* Returns evasion adverb

@@ -1197,7 +1197,10 @@ static unique_ptr<targeter> _spell_targeter(spell_type spell, int pow,
         return make_unique<targeter_smite>(&you, range, 1, 1, false,
                                            [](const coord_def& p) -> bool {
                                               return you.pos() != p; });
-
+    case SPELL_PASSWALL:
+        return make_unique<targeter_passwall>(range);
+    case SPELL_DIG:
+        return make_unique<targeter_dig>(range);
     default:
         break;
     }
@@ -1377,6 +1380,11 @@ spret_type your_spells(spell_type spell, int powc, bool allow_fail,
         args.needs_path = needs_path;
         args.target_prefix = prompt;
         args.top_prompt = title;
+        if (hitfunc && hitfunc->can_affect_walls())
+        {
+            args.show_floor_desc = true;
+            args.show_boring_feats = false; // don't show "The floor."
+        }
         if (testbits(flags, SPFLAG_NOT_SELF))
             args.self = CONFIRM_CANCEL;
         else
@@ -1716,8 +1724,10 @@ static spret_type _do_cast(spell_type spell, int powc, const dist& spd,
     case SPELL_SUMMON_LIGHTNING_SPIRE:
         return cast_summon_lightning_spire(powc, beam.target, god, fail);
 
+#if TAG_MAJOR_VERSION == 34
     case SPELL_SUMMON_GUARDIAN_GOLEM:
         return cast_summon_guardian_golem(powc, god, fail);
+#endif
 
     case SPELL_CALL_IMP:
         return cast_call_imp(powc, god, fail);
@@ -1785,9 +1795,10 @@ static spret_type _do_cast(spell_type spell, int powc, const dist& spd,
 
     case SPELL_AURA_OF_ABJURATION:
         return cast_aura_of_abjuration(powc, fail);
-
+#if TAG_MAJOR_VERSION == 34
     case SPELL_EXCRUCIATING_WOUNDS:
         return cast_excruciating_wounds(powc, fail);
+#endif
 
     // Transformations.
     case SPELL_BEASTLY_APPENDAGE:
@@ -1866,7 +1877,7 @@ static spret_type _do_cast(spell_type spell, int powc, const dist& spd,
         return conjure_flame(&you, powc, beam.target, fail);
 
     case SPELL_PASSWALL:
-        return cast_passwall(spd.delta, powc, fail);
+        return cast_passwall(beam.target, powc, fail);
 
     case SPELL_APPORTATION:
         return cast_apportation(powc, beam, fail);

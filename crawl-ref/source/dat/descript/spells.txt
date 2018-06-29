@@ -729,8 +729,8 @@ effect when the caster's magic is depleted.
 %%%%
 Injury Bond spell
 
-Binds the caster to a nearby ally, redirecting half of any damage the target
-suffers to the caster.
+Binds the caster to nearby allies, redirecting half of any damage they suffer
+to the caster.
 %%%%
 Injury Mirror spell
 
@@ -1097,7 +1097,7 @@ Surrounds the caster with a mobile ring of highly-damaging thunderclouds.
 %%%%
 Sandblast spell
 
-Consumes a stone to create a short blast of high-velocity rock shards. Its
+Consumes ten stones to create a short blast of high-velocity rock shards. Its
 damage is strongly reduced by armour.
 %%%%
 Sap Magic spell
@@ -1293,7 +1293,7 @@ Throws a ball of hot steam towards a targeted creature.
 Sticks to Snakes spell
 
 Transforms a number of arrows in inventory into short-lived snakes, creating
-more dangerous snakes with higher power.
+more dangerous snakes with higher power. Each snake costs ten arrows.
 %%%%
 Sticky Flame Range spell
 
@@ -1538,12 +1538,6 @@ the ground shortly thereafter.
 
 Ranged weapons and certain powerful named artefacts cannot be affected, and
 any abilities that require evocation skill to trigger will not be active.
-%%%%
-Twisted Resurrection spell
-
-Causes nearby corpses to begin crawling together, merging into horrible
-agglomerations of flesh. More and larger corpses result in more powerful
-creations.
 %%%%
 Upheaval spell
 
