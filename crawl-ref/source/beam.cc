@@ -4645,6 +4645,8 @@ void bolt::affect_monster(monster* mon)
         {
             if (testbits(mon->flags, MF_DEMONIC_GUARDIAN))
                 mpr("Your demonic guardian avoids your attack.");
+            else if (mon->type == MONS_FALSE_IMAGE)
+                mpr("Your image avoids your attack.");
             else if (!bush_immune(*mon))
             {
                 simple_god_message(
@@ -5002,7 +5004,6 @@ bool bolt::has_saving_throw() const
     case BEAM_INVISIBILITY:
     case BEAM_DISPEL_UNDEAD:
     case BEAM_BLINK_CLOSE:
-    case BEAM_BLINK:
     case BEAM_BECKONING:
     case BEAM_MALIGN_OFFERING:
     case BEAM_AGILITY:
@@ -5016,6 +5017,8 @@ bool bolt::has_saving_throw() const
     case BEAM_VILE_CLUTCH:
     case BEAM_INNER_FLAME:
         return false;
+    case BEAM_BLINK: // resistable only if used by the player
+        return (agent() && agent()->is_player());
     case BEAM_VULNERABILITY:
         return !one_chance_in(3);  // Ignores MR 1/3 of the time
     case BEAM_PARALYSIS:        // Giant eyeball paralysis is irresistible
@@ -5094,6 +5097,10 @@ bool ench_flavour_affects_monster(beam_type flavour, const monster* mon,
 
     case BEAM_VILE_CLUTCH:
         rc = !mons_aligned(&you, mon) && you.can_constrict(mon, false);
+        break;
+
+    case BEAM_SHACKLE:
+        rc = !(mons_is_slime(*mon) || mon->is_insubstantial());
         break;
 
     default:
@@ -5642,6 +5649,16 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         return MON_AFFECTED;
     }
 
+    case BEAM_SHACKLE:
+    {
+        const int dur = 1 + random2(3) + 
+               random2avg(div_rand_round(ench_power * BASELINE_DELAY, 3), 2);
+        mon->add_ench(mon_enchant(ENCH_SHACKLE, 0, &you, dur));
+        if (simple_monster_message(*mon, " is shackled."))
+            obvious_effect = true;
+        return MON_AFFECTED;
+    }
+
     default:
         break;
     }
@@ -6131,6 +6148,7 @@ bool bolt::nasty_to(const monster* mon) const
             // Co-aligned inner flame is fine.
             return !mons_aligned(mon, agent());
         case BEAM_TELEPORT:
+        case BEAM_BLINK:
         case BEAM_BECKONING:
             // Friendly and good neutral monsters don't mind being teleported.
             return !mon->wont_attack();
@@ -6142,6 +6160,7 @@ bool bolt::nasty_to(const monster* mon) const
         case BEAM_PAIN:
         case BEAM_AGONY:
         case BEAM_HIBERNATION:
+        case BEAM_SHACKLE:
             return ench_flavour_affects_monster(flavour, mon);
         case BEAM_TUKIMAS_DANCE:
             return tukima_affects(*mon); // XXX: move to ench_flavour_affects?
@@ -6418,7 +6437,7 @@ static string _beam_type_name(beam_type type)
     case BEAM_IRRESISTIBLE_CONFUSION:return "confusion";
     case BEAM_INFESTATION:           return "infestation";
     case BEAM_VILE_CLUTCH:           return "vile clutch";
-
+    case BEAM_SHACKLE:               return "shackles";
     case NUM_BEAMS:                  die("invalid beam type");
     }
     die("unknown beam type");
@@ -6525,8 +6544,10 @@ bool shoot_through_monster(const bolt& beam, const monster* victim)
 
     return (origin_worships_fedhas
             && fedhas_protects(*victim))
-           || (originator->is_player()
+           || ((originator->is_player()
                && testbits(victim->flags, MF_DEMONIC_GUARDIAN))
+           || (originator->is_player()
+               && victim->type == MONS_FALSE_IMAGE))
            && !beam.is_enchantment()
            && beam.origin_spell != SPELL_CHAIN_LIGHTNING
            && (mons_atts_aligned(victim->attitude, origin_attitude)
