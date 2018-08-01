@@ -1703,18 +1703,18 @@ int find_free_slot(const item_def &i)
 static void _got_item(item_def& item)
 {
     seen_item(item);
-	
-	int nrunes = runes_in_pack();
-	if (nrunes >= 1)
-	{
-		mpr("You use a rune to identify the item.");
-		if (item.defined())
-		{
-			set_ident_type(item, true);
-			set_ident_flags(item, ISFLAG_IDENT_MASK);
-		}
-	}
-	
+    
+    int nrunes = runes_in_pack();
+    if (nrunes >= 1)
+    {
+        mpr("You use a rune to identify the item.");
+        if (item.defined())
+        {
+            set_ident_type(item, true);
+            set_ident_flags(item, ISFLAG_IDENT_MASK);
+        }
+    }
+    
     shopping_list.cull_identical_items(item);
     item.flags |= ISFLAG_HANDLED;
 
@@ -1911,10 +1911,10 @@ static void _get_rune(const item_def& it, bool quiet)
              rune_type_name(it.sub_type));
         int nrunes = runes_in_pack();
         if (nrunes == 1)
-		{
+        {
             mpr("You feel a rush of knowledge!");
-			identify_inventory();
-		}
+            identify_inventory();
+        }
         if (nrunes >= you.obtainable_runes)
             mpr("You have collected all the runes! Now go and win!");
         else if (nrunes == ZOT_ENTRY_RUNES)
