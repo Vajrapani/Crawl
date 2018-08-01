@@ -1902,7 +1902,8 @@ static void _get_rune(const item_def& it, bool quiet)
         int nrunes = runes_in_pack();
         if (nrunes == 1)
         {
-            mpr("You feel a rush of knowledge!");
+            mpr("You can now use this rune "
+                "to automatically identify items.");
             identify_inventory();
         }
         if (nrunes >= you.obtainable_runes)
