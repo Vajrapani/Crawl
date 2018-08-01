@@ -1705,7 +1705,7 @@ static void _got_item(item_def& item)
     seen_item(item);
     
     int nrunes = runes_in_pack();
-    if (nrunes >= 1)
+    if (nrunes >= 1 && !fully_identified(item))
     {
         mpr("You use a rune to identify the item.");
         if (item.defined())
