@@ -465,7 +465,11 @@ int make_mons_weapon(monster_type type, int level, bool melee_only)
         } } },
         { MONS_GOBLIN,                  { GOBLIN_WEAPONS } },
         { MONS_JESSICA,                 { GOBLIN_WEAPONS } },
-        { MONS_IJYB,                    { GOBLIN_WEAPONS } },
+        { MONS_IJYB, { { { WPN_DAGGER, 1 } }, { 1, 0, 2 }, {
+            { SPWPN_VENOM, 1 },
+            { SPWPN_CHAOS, 1 },
+            { SPWPN_ELECTROCUTION, 1 },
+        } } },
         { MONS_WIGHT,
             { { { WPN_MORNINGSTAR,      4 },
                 { WPN_DIRE_FLAIL,       4 },
