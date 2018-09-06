@@ -136,13 +136,21 @@ static void _give_wand(monster* mon, int level)
     if (!give_wand)
         return;
 
-    // Don't give top-tier wands before 5 HD, except to Ijyb and not in sprint.
-    const bool no_high_tier =
-            (mon->get_experience_level() < 5
-                || mons_class_flag(mon->type, M_NO_HT_WAND))
-            && (mon->type != MONS_IJYB || crawl_state.game_is_sprint());
-
-    const int idx = items(false, OBJ_WANDS, OBJ_RANDOM, level);
+    // Don't give top-tier wands before 5 HD or in sprint.
+    bool no_high_tier;
+    int idx;
+    
+    if(mon->type == MONS_IJYB)
+    {
+        idx = items(false, OBJ_WANDS, WAND_POLYMORPH, level);
+    }
+    else
+    {
+        no_high_tier = (mon->get_experience_level() < 5
+            || mons_class_flag(mon->type, M_NO_HT_WAND))
+            && crawl_state.game_is_sprint();
+        idx = items(false, OBJ_WANDS, OBJ_RANDOM, level);
+    }
 
     if (idx == NON_ITEM)
         return;
