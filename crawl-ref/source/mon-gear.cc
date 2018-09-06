@@ -919,6 +919,7 @@ int make_mons_weapon(monster_type type, int level, bool melee_only)
         { NUM_WEAPONS,                  8 }, }; // 1/9 chance of ranged weapon
 
     static const map<monster_type, mon_weapon_spec> secondary_weapon_specs = {
+        { MONS_IJYB, { { { WPN_HUNTING_SLING, 1 } } } },
         { MONS_JOSEPH, { { { WPN_HUNTING_SLING, 1 } } } },
         { MONS_DEEP_ELF_ARCHER, // XXX: merge w/centaur warrior primary?
             { { { WPN_SHORTBOW,         2 },
@@ -1321,6 +1322,7 @@ static void _give_ammo(monster* mon, int level, bool mons_summoned)
 
         if (xitt == MI_STONE
             && (mon->type == MONS_JOSEPH
+                || mon->type == MONS_IJYB
                 || mon->type == MONS_SATYR
                 || (mon->type == MONS_FAUN && one_chance_in(3))
                 || one_chance_in(15)))
