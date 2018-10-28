@@ -1153,7 +1153,16 @@ static string _describe_weapon(const item_def &item, bool verbose)
         switch (item_attack_skill(item))
         {
         case SK_POLEARMS:
-            description += "\n\nIt can be evoked to extend its reach.";
+            if (item.sub_type == WPN_SCYTHE)
+            {
+              description += "\n\nIt can be evoked to extend its reach.\n"
+                           "It hits all enemies within two tiles of the wielder, "
+                           "dealing less damage to those not targeted.";
+            }
+            else
+            {
+              description += "\n\nIt can be evoked to extend its reach.";
+            }
             break;
         case SK_AXES:
             description += "\n\nIt hits all enemies adjacent to the wielder, "
